@@ -9,7 +9,7 @@ int this_pid = getpid();
 fork();
 if(getppid() == this_pid)
 {
-execle("/bin/date","date",0,envp);
+execle("/bin/hw","hw",0,envp);
 printf("An error occured!");
 exit(-1);
 }
