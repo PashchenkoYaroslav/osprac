@@ -4,6 +4,8 @@
 #include <sys/msg.h>
 #include <string.h>
 #include <stdio.h>
+#include <sys/file.h>
+#include <errno.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
@@ -29,7 +31,9 @@ int main() {
             double message;
         } info;
     } serverBuf;
-
+    int pid_file = open("work_3_server.c",O_CREAT|O_RDWR,0666);
+    int rc = flock(pid_file,LOCK_EX|LOCK_NB);
+    if(!rc){
     if ((key = ftok(pathname, 0)) < 0) {
         printf("Failed to generate key\n");
         return(-1);
@@ -63,5 +67,10 @@ int main() {
         }
         printf("Response sent succesfully\n");
     }
+}
+else{
+ printf("Another instance is running\n");
+return(-1);
+}
     return 0;
 }
