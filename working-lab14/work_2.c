@@ -1,13 +1,13 @@
 #include <signal.h>
-
+#include <stdio.h>
 void custom_handler(int sig) {
 	if (sig == SIGINT) {
 		printf("We got a signal %d.", sig);
-		println("Ctrl+C combination will be ignored.");
+		printf("Ctrl+C combination will be ignored.\n");
 	}
 	if (sig == SIGQUIT) {
 	printf("We got a signal %d.", sig);
-	println("Ctrl+C combination will be ignored.");
+	printf("Ctrl+4 combination will be ignored.\n");
 	}
 }
 int main() {
